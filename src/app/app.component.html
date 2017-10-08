@@ -1,0 +1,9 @@
+<!--The content below is only a placeholder and can be replaced.-->
+Enter Github Username: <input type="text" #userName/>
+<button (click)="getUserRepos(userName.value)">Submit</button>
+<hr> Below are the repositories for {{userName.value}}
+<ul>
+    <li *ngFor="let repo of userRepos">
+        {{repo.name}}
+    </li>
+</ul>
