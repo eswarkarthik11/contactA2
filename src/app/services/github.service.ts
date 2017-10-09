@@ -18,8 +18,18 @@ export class GithubService {
             return res.json() || {}
         })
         .catch(this.handleError);
-        
     }
+
+    public getContacts(): Observable<any>{
+        return this.httpService.get('http://localhost:50168/api/contacts/1')
+        .map((res:Response)=>{
+            console.log(res.json());
+        })
+        .catch(this.handleError);
+
+    }    
+        
+    
     public getUserRepos(userName: string): Observable<any> {
         return this.httpService.get(this.userRepoUrl.replace('{userName}', userName))
             .map((res: Response) => {

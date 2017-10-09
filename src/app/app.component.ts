@@ -19,6 +19,11 @@ export class AppComponent {
     });
    this.githubService.getusers().subscribe((users:any) => {
      console.log(users);
-   })
+    });
+
+     this.githubService.getContacts().subscribe((contacts:any)=>{
+       console.log(contacts);
+     });
+   
   }
 }

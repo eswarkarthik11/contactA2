@@ -12,11 +12,18 @@ export class LoginServive{
     constructor(private httpService: Http) {
         
             }
-    public login(): Observable<any>{
-        return this.httpService.get('http://localhost:50168/api/login')
+   
+   
+     public login(userName:String,password:String): Observable<any>{
+
+    var x= {
+            userName : userName,
+            password : password
+        }
+        return this.httpService.post('http://localhost:50168/api/login',x)
         .map((res:Response) => {
             console.log(res);
-            
+     
         })
         }
 }
