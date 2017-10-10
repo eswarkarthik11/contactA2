@@ -7,6 +7,8 @@ Enter name: <input type="text" #name/> Enter number: <input type="text" #number/
 <button (click)="save(name.value,number.value)">save</button>
 
 <ol>
-    <li  *ngFor="let x of result"> {{ x.ContactName}}</li>         
+    <li  *ngFor="let x of result">
+        {{ x.ContactName}} - {{x.ContactNumber}}
+    </li> 
     
 </ol>

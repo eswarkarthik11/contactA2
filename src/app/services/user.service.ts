@@ -23,9 +23,7 @@ export class UserService {
 
         public getContacts(currentUserId: number): Observable<any>{
         return this.httpService.get('http://localhost:50168/api/contacts/'+currentUserId)
-        .map((res:Response)=>{
-            console.log(res.json());
-        })
+         .map(response => response.json())
         .catch(this.handleError);
     }
 
@@ -38,9 +36,7 @@ export class UserService {
         console.log(body);
         
         return this.httpService.post('http://localhost:50168/api/contacts', body)
-        .map((res:Response)=>{
-            console.log(res.json());
-        })
+        .map(response => response.json())
         .catch(this.handleError);
     } 
         

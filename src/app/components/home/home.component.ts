@@ -21,15 +21,16 @@ export class HomeComponent {
 
     ngOnInit() {
 
-        this.route.params.subscribe(params => { 
-            this.userId = +params['userid']; 
+        this.route.paramMap.subscribe(params => { 
+            this.userId = +params.get('userid');//['userid']; 
+            console.log(this.userId);
              this.currentUserId = this.userId;
             console.log(this.userId);
         }); 
 
-        this.userService.getContacts(this.currentUserId).subscribe((cont:any) =>
+        this.userService.getContacts(this.currentUserId).subscribe((cont: any) =>
             {
-                console.log(cont);
+            
                 console.log(cont);
                 this.result = cont;
             
