@@ -20,8 +20,11 @@ export class LoginComponent {
         this.loginService.login(userName, password)
         .subscribe((res: any) => {
             console.log('login response', res);
+            if(res) {
+                this.router.navigate(['/home', res.UserId]);
+            } else {
+                // show login failure
+            }
         });
-
-        this.router.navigate(['/home']);
     }
 }

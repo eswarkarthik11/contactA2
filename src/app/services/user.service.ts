@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 
+import { ContactModel } from '../models/contact.model';
 
 @Injectable()
 export class UserService {
@@ -26,8 +27,21 @@ export class UserService {
             console.log(res.json());
         })
         .catch(this.handleError);
+    }
 
-    }    
+    public addContact(data: ContactModel): Observable<any>{
+        let body = {
+            ContactName: data.ContactName,
+            ContactNumber: data.ContactNumber,
+            UserId: data.UserId
+        };
+        
+        return this.httpService.post('http://localhost:50168/api/contacts', body)
+        .map((res:Response)=>{
+            console.log(res.json());
+        })
+        .catch(this.handleError);
+    } 
         
     
     public getUserRepos(userName: string): Observable<any> {
