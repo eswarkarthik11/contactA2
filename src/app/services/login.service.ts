@@ -30,7 +30,7 @@ export class LoginService {
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
-        console.error('github.service handleError()', errMsg);
+        console.error('login.service handleError()', errMsg);
         return Observable.throw(errMsg);
     }
 }

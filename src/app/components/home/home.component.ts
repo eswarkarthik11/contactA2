@@ -12,6 +12,8 @@ import { ContactModel } from '../../models/contact.model';
 export class HomeComponent {
     title :string = "Home Page";
     userId: number;
+    currentUserId: number;
+    result: any[];
     constructor(private userService: UserService,
     private route: ActivatedRoute,
     private router: Router){
@@ -21,8 +23,19 @@ export class HomeComponent {
 
         this.route.params.subscribe(params => { 
             this.userId = +params['userid']; 
+             this.currentUserId = this.userId;
             console.log(this.userId);
         }); 
+
+        this.userService.getContacts(this.currentUserId).subscribe((cont:any) =>
+            {
+                console.log(cont);
+                console.log(cont);
+                this.result = cont;
+            
+            })
+
+
     }
     save(name: string, number: string) {
         let data: ContactModel = new ContactModel();

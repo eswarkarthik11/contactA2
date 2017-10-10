@@ -12,22 +12,23 @@ export class AppComponent {
   constructor(private userService: UserService){
   }
 
-  getUserRepos(userName: string){
-    this.userService.getUserRepos(userName).subscribe((repos: any) => {
-      console.log(repos);
-      this.userRepos = repos;
-    });
-  }
+  // getUserRepos(userName: string){
+  //   this.userService.getUserRepos(userName).subscribe((repos: any) => {
+  //     console.log(repos);
+  //     this.userRepos = repos;
+  //   });
+  // }
 
-  getUsers() {
-    this.userService.getusers().subscribe((users:any) => {
-     console.log(users);
-    });
-  }
+//   getUsers() {
+//     this.userService.getusers().subscribe((users:any) => {
+//      console.log(users);
+//     });
+//   }
 
-  getContacts() {
-    this.userService.getContacts().subscribe((contacts:any)=>{
-       console.log(contacts);
-     });
-  }
+//   getContacts() {
+//     this.userService.getContacts().subscribe((contacts:any)=>{
+//        console.log(contacts);
+//      });
+//   }
+// 
 }

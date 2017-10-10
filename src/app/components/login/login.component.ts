@@ -21,7 +21,7 @@ export class LoginComponent {
         .subscribe((res: any) => {
             console.log('login response', res);
             if(res) {
-                this.router.navigate(['/home', res.UserId]);
+                this.router.navigate(['/home', res]);
             } else {
                 // show login failure
             }

@@ -7,7 +7,7 @@ import { ContactModel } from '../models/contact.model';
 @Injectable()
 export class UserService {
 
-    userRepoUrl: string = `https://api.github.com/users/{userName}/repos`;
+    //userRepoUrl: string = `https://api.github.com/users/{userName}/repos`;
     constructor(private httpService: Http) {
 
     }
@@ -21,8 +21,8 @@ export class UserService {
         .catch(this.handleError);
     }
 
-    public getContacts(): Observable<any>{
-        return this.httpService.get('http://localhost:50168/api/contacts/1')
+        public getContacts(currentUserId: number): Observable<any>{
+        return this.httpService.get('http://localhost:50168/api/contacts/'+currentUserId)
         .map((res:Response)=>{
             console.log(res.json());
         })
@@ -32,9 +32,10 @@ export class UserService {
     public addContact(data: ContactModel): Observable<any>{
         let body = {
             ContactName: data.ContactName,
-            ContactNumber: data.ContactNumber,
+            ContactNumber: Number(data.ContactNumber),
             UserId: data.UserId
         };
+        console.log(body);
         
         return this.httpService.post('http://localhost:50168/api/contacts', body)
         .map((res:Response)=>{
@@ -44,14 +45,14 @@ export class UserService {
     } 
         
     
-    public getUserRepos(userName: string): Observable<any> {
-        return this.httpService.get(this.userRepoUrl.replace('{userName}', userName))
-            .map((res: Response) => {
-                console.log(res.json());
-                return res.json() || {}
-            })
-            .catch(this.handleError);
-    }
+    // public getUserRepos(userName: string): Observable<any> {
+    //     return this.httpService.get(this.userRepoUrl.replace('{userName}', userName))
+    //         .map((res: Response) => {
+    //             console.log(res.json());
+    //             return res.json() || {}
+    //         })
+    //         .catch(this.handleError);
+    // }
 
     private handleError(error: Response | any) {
         let errMsg: string;
@@ -62,7 +63,7 @@ export class UserService {
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
-        console.error('github.service handleError()', errMsg);
+        console.error('user.service handleError()', errMsg);
         return Observable.throw(errMsg);
     }
 }
