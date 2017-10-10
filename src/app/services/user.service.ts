@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 @Injectable()
-export class GithubService {
+export class UserService {
 
     userRepoUrl: string = `https://api.github.com/users/{userName}/repos`;
     constructor(private httpService: Http) {
@@ -40,7 +40,6 @@ export class GithubService {
     }
 
     private handleError(error: Response | any) {
-        // In a real world app, we might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {
             const body = error.json() || '';

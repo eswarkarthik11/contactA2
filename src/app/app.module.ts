@@ -1,19 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import {GithubService} from './services/github.service';
 
+import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+
+import { LoginService } from './services/login.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [GithubService],
+  providers: [LoginService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

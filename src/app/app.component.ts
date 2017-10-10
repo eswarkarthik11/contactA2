@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GithubService } from './services/github.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +9,25 @@ import { GithubService } from './services/github.service';
 })
 export class AppComponent {
   userRepos: any[];
-  constructor(private githubService: GithubService){
+  constructor(private userService: UserService){
   }
 
   getUserRepos(userName: string){
-    this.githubService.getUserRepos(userName).subscribe((repos: any) => {
+    this.userService.getUserRepos(userName).subscribe((repos: any) => {
       console.log(repos);
       this.userRepos = repos;
     });
-   this.githubService.getusers().subscribe((users:any) => {
+  }
+
+  getUsers() {
+    this.userService.getusers().subscribe((users:any) => {
      console.log(users);
     });
+  }
 
-     this.githubService.getContacts().subscribe((contacts:any)=>{
+  getContacts() {
+    this.userService.getContacts().subscribe((contacts:any)=>{
        console.log(contacts);
      });
-   
   }
 }
