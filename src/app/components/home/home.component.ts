@@ -12,6 +12,7 @@ import { ContactModel } from '../../models/contact.model';
 export class HomeComponent {
     title :string = "Home Page";
     userId: number;
+    user: string ;
     currentUserId: number;
     result: any[];
     constructor(private userService: UserService,
@@ -22,20 +23,17 @@ export class HomeComponent {
     ngOnInit() {
 
         this.route.paramMap.subscribe(params => { 
+            //console.log("Data came")
             this.userId = +params.get('userid');//['userid']; 
-            console.log(this.userId);
+            //console.log(this.userId);
              this.currentUserId = this.userId;
-            console.log(this.userId);
         }); 
 
         this.userService.getContacts(this.currentUserId).subscribe((cont: any) =>
-            {
-            
-                console.log(cont);
+            {console.log(cont);
                 this.result = cont;
-            
             })
-
+    
 
     }
     save(name: string, number: string) {
@@ -45,6 +43,13 @@ export class HomeComponent {
         data.UserId = this.userId.toString();
         this.userService.addContact(data).subscribe((res: any) => {
             console.log('save result is ',res);
+            let temp = { ContactName : res.ContactName, ContactNumber: res.ContactNumber, UserId : res.UserId};
+           // console.log(temp);
+            this.result.push(temp);
         });
+    }
+
+    logout(){
+        this.router.navigate(['/login']);
     }
 }

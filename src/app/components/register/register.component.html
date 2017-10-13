@@ -1,0 +1,7 @@
+<h1>{{title}}</h1>
+
+<br/> Enter Username: <input type="text" #userName/>
+<br/> Enter Password: <input type="password" #password/>
+<br/>
+<button (click)="registerUser(userName.value,password.value)">Register</button>
+<br>{{message}}<button (click)="login()">Login</button>

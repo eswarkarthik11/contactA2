@@ -19,13 +19,13 @@ export class UserService {
             return res.json() || {}
         })
         .catch(this.handleError);
-    }
+        }
 
         public getContacts(currentUserId: number): Observable<any>{
         return this.httpService.get('http://localhost:50168/api/contacts/'+currentUserId)
          .map(response => response.json())
         .catch(this.handleError);
-    }
+        }
 
     public addContact(data: ContactModel): Observable<any>{
         let body = {
